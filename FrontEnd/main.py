@@ -149,6 +149,15 @@ def generate():
     global generated
     st.write("Here, you can upload a midi file and generate a similar, completely original sound using artificial "
              "neural networks.")
+
+
+    st.write("\n\n\n")
+
+    st.write("Don't have Midi? Download one [here]"
+             "(https://files.khinsider.com/midifiles/ps2/kingdom-hearts/dearly-beloved.mid)")
+    st.write("[Here's another one I liked](https://www.vgmusic.com/music/other/miscellaneous/piano/Set_Free_Piano.mid)")
+
+    st.write("Once downloaded, re-upload the midi here to generate something new!")
     upload = st.file_uploader("Upload Midi", type=['.mid'])
 
     if upload is None:
