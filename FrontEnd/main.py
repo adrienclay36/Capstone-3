@@ -1,11 +1,7 @@
 import streamlit as st
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 import pretty_midi
-import io
 from scipy.io import wavfile
-from tensorflow import keras
 from music21 import chord, note, converter, instrument, stream
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.layers import Input, Dense
