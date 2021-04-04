@@ -116,8 +116,6 @@ def generateMidi(midi_file):
     input_dimensions = n_chords * n_samples
     latent_dimensions = 2
 
-    train_chords_flat = train_chords.flatten()
-
     encoder_input = Input(shape=input_dimensions)
     latent = Input(shape=latent_dimensions)
     encoded = Dense(latent_dimensions, activation='tanh')(encoder_input)
