@@ -6,6 +6,7 @@ from music21 import chord, note, converter, instrument, stream
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras import Model
+import io
 
 generated = None
 
@@ -164,24 +165,22 @@ def generate():
         st.info("Please upload a Midi File")
         st.stop()
 
-    # midi_data = pretty_midi.PrettyMIDI(upload)
-    # audio_data = midi_data.fluidsynth()
-    #
-    # audio_data = np.int16(audio_data / np.max(np.abs(
-    #     audio_data)) * 32767 * 0.9)
-    #
-    # virtualfile = io.BytesIO()
-    # wavfile.write(virtualfile, 44100, audio_data)
-    #
-    # st.audio(virtualfile)
+    midi_data = pretty_midi.PrettyMIDI(upload)
+    audio_data = midi_data.fluidsynth()
+
+    audio_data = np.int16(audio_data / np.max(np.abs(
+        audio_data)) * 32767 * 0.9)
+
+    virtual_file = io.BytesIO()
+    wavfile.write(virtual_file, 44100, audio_data)
+
+    st.audio(virtual_file)
 
     midi_file = converter.parseData(upload.read())
 
     st.write("Your Original Audio:")
     st.write("\n\n\n")
-    # st.audio(virtual_file)
-    st.write("\n\n\n")
-    st.write("Audio Player Here")
+    st.audio(virtual_file)
     st.write("\n\n\n")
 
     if st.button("Generate!"):
